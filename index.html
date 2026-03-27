@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck Pond</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f9ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* The Pond */
+        .pond {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background-color: #4fc3f7;
+            border-radius: 50%;
+            border: 8px solid #81d4fa;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Reeds and Grass */
+        .reeds {
+            position: absolute;
+            font-size: 24px;
+            bottom: 10px;
+            right: 50px;
+            z-index: 1;
+        }
+
+        /* The Duck Container (The path it follows) */
+        .duck-path {
+            position: absolute;
+            width: 250px;
+            height: 150px;
+            animation: swim 10s linear infinite;
+        }
+
+        /* The Duck itself */
+        .duck {
+            position: absolute;
+            font-size: 40px;
+            /* Keeps the duck upright while the path rotates */
+            animation: counter-rotate 10s linear infinite;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Keyframes for the swimming loop */
+        @keyframes swim {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes counter-rotate {
+            from { transform: rotate(0deg) scaleX(-1); }
+            to { transform: rotate(-360deg) scaleX(-1); }
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            color: #0288d1;
+            font-weight: 300;
+        }
+
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: ripple-effect 3s infinite;
+        }
+
+        @keyframes ripple-effect {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 100px; height: 50px; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Just a peaceful pond.</h1>
+
+    <div class="pond">
+        <div class="ripple" style="top: 100px; left: 150px;"></div>
+        <div class="ripple" style="top: 180px; left: 100px; animation-delay: 1s;"></div>
+        
+        <div class="reeds">🌾🌿</div>
+
+        <div class="duck-path">
+            <div class="duck" id="ducky">🦆</div>
+        </div>
+    </div>
+
+    <script>
+        const duck = document.getElementById('ducky');
+        duck.addEventListener('click', () => {
+            alert('Quack!');
+        });
+    </script>
+</body>
+</html>
