@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Yard</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f8e9;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #33691e;
+            margin-bottom: 10px;
+        }
+
+        /* The Yard */
+        .yard {
+            position: relative;
+            width: 500px;
+            height: 350px;
+            background-color: #8bc34a;
+            border-radius: 40px;
+            border: 10px solid #689f38;
+            box-shadow: 0 15px 0 #558b2f;
+            overflow: hidden;
+        }
+
+        /* Flowers & Tufts of Grass */
+        .deco {
+            position: absolute;
+            font-size: 20px;
+            user-select: none;
+        }
+
+        /* The Walking Path (Elliptical) */
+        .walk-path {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            top: 100px;
+            left: 100px;
+            animation: walk-around 12s linear infinite;
+        }
+
+        /* The Chicken */
+        .chicken {
+            position: absolute;
+            font-size: 50px;
+            cursor: pointer;
+            /* Combines hopping and keeping the chicken upright */
+            animation: 
+                peck 0.5s ease-in-out infinite alternate,
+                counter-rotate 12s linear infinite;
+        }
+
+        /* Movement Keyframes */
+        @keyframes walk-around {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes counter-rotate {
+            from { transform: rotate(0deg) scaleX(1); }
+            to { transform: rotate(-360deg) scaleX(1); }
+        }
+
+        /* Pecking/Hopping animation */
+        @keyframes peck {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(-10deg); }
+        }
+
+        .fence {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 5px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cluck Cluck!</h1>
+
+    <div class="yard">
+        <div class="deco" style="top: 20px; left: 40px;">🌼</div>
+        <div class="deco" style="top: 250px; left: 400px;">🌸</div>
+        <div class="deco" style="top: 50px; left: 350px;">🌿</div>
+        <div class="deco" style="top: 280px; left: 100px;">🌼</div>
+        
+        <div class="walk-path">
+            <div class="chicken" id="hen">🐔</div>
+        </div>
+
+        <div class="fence">🪵🪵🪵🪵</div>
+    </div>
+
+    <p>Click the chicken to hear it speak!</p>
+
+    <script>
+        const hen = document.getElementById('hen');
+        const sounds = ['Bawk!', 'Cluck cluck!', 'Pikaaak!', '🥚?'];
+        
+        hen.addEventListener('click', () => {
+            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+            alert(randomSound);
+        });
+    </script>
+</body>
+</html>
